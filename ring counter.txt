@@ -1,0 +1,20 @@
+`timescale 1ns / 1ps
+
+module ring_counter(pre,clr,clk,Q
+
+    );
+    input pre,clr,clk;
+    output reg [9:0]Q;
+    always@(posedge clk)
+    begin
+        if(!pre)
+            Q[9] <= 1;
+        else if(!clr)
+            Q[8:0] <= 0;
+        else
+        begin
+            Q[0] <= Q[9];
+            Q[9:1] <= Q[8:0];
+        end                 
+    end
+endmodule

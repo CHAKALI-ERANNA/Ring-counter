@@ -1,0 +1,25 @@
+`timescale 1ns / 1ps
+
+module ring_counter_TB(
+
+    );
+    reg clk,clr,pre;
+    wire [9:0]Q;
+    always #5 clk = ~clk;
+    ring_counter uut(pre,clr,clk,Q);
+    initial begin
+        clk <= 0;
+        clr <= 1;
+        pre <= 1;
+    end
+    initial begin
+            
+            clr <= 0;
+        #10 clr <= 1;
+            pre <= 0;
+        #10 pre <= 1;
+        //#50 pre <= 0;
+        //#10 pre <= 1;
+        #200 $finish;    
+    end    
+endmodule
